@@ -6,6 +6,10 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+    'simple-auth': { authorizer: 'simple-auth-authorizer:oauth2-bearer' },
+    'simple-auth-oauth2': { serverTokenEndpoint: 'http://localhost:8080/oauth/token'},
+
+
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -16,6 +20,15 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    contentSecurityPolicy: {
+      'default-src': "'self'",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
+      'font-src': "'self'",
+      'connect-src': "'*' ws://localhost:35729 ws://0.0.0.0:35729 http://0.0.0.0:4200/csp-report",
+      'img-src': "'*'",
+      'style-src': "'self' 'unsafe-inline'",
+      'frame-src': "'none'"
     }
   };
 
